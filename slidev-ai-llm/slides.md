@@ -12,10 +12,11 @@ mdc: true
 class: text-center
 ---
 
-Going back to from Unknown to 1930
+<h2>Going back to 1930</h2>
 
-<div class="flex justify-center">
+<div class="flex flex-row justify-center">
   <img src="/old.jpg" alt="Deep Learning" width="512" />
+  <img src="/alan-turing.jpg" alt="Deep Learning" width="512" />
 </div>
 
 ---
@@ -26,6 +27,41 @@ class: text-center
   <img src="/microwave.jpg" alt="Deep Learning" width="512" />
   <img src="/futureandnow.jpg" alt="Deep Learning" width="512" />
 </div>
+
+---
+class: text-center
+---
+
+<h2>Going back to recent years</h2>
+
+  <img class="mx-auto mt-10" src="/geoffrey-hinton.jpg" alt="Deep Learning" width="206" />
+  <p>Geoffrey Hinton (Godfather of AI)</p>
+
+---
+class: text-center
+---
+
+<div class="flex flex-wrap gap-4 justify-center">
+<div>
+  <img src="/chess-ai.webp" alt="Deep Learning" width="420" />
+      <p>CHESS AI</p>
+  </div>
+  <img src="/microsoft-ai.webp" alt="Deep Learning" width="512"/>
+</div>
+
+---
+class: text-center
+---
+
+<div class="flex flex-wrap gap-4 justify-center p-4">
+
+  <img class="w-96 h-56" src="/kai.jpg" alt="Deep Learning"/>
+  <img class="w-96 h-56" src="/stonks.webp" alt="Deep Learning" />
+  <img class="w-96 h-56" src="/mobil.jpeg" alt="Deep Learning" />
+  <img class="w-96 h-56" src="/Untitled.jpg" alt="Deep Learning"/>
+
+</div>
+
 
 ---
 class: text-center
@@ -51,6 +87,21 @@ class: text-center
 <div class="flex justify-center">
   <img src="/ml-process.png" alt="Deep Learning" width="512" />
 </div>
+
+---
+
+<h1>AI Categories</h1>
+
+- 📚 **Natural Language Processing**
+  - Text Recognition
+  - Text Generation
+- 🖼️ **Computer Vision**
+  - Image Segmentation
+  - Image Classification
+  - Object Detection
+- 🎵 **Audio Recognition**
+  - Speech Recognition
+  - Audio Classification
 
 ---
 class: text-center
@@ -79,11 +130,28 @@ class: text-center
 
 <a href="https://huggingface.co/">https://huggingface.co/</a>
 
+---
+
+<h1 class="text-6xl">Simple Code Example</h1>
+<div class="absolute inset-0 flex items-center justify-center">
+```py
+!pip install datasets
+!pip install accelerate -U
+!pip install pip install transformers[torch]
+
+from datasets import load_dataset, load_metric
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments, Trainer, DataCollatorWithPadding
+import numpy as np
+
+from google.colab import drive
+drive.mount('/content/drive')
+```
+</div>
+
 
 
 ---
 
-<h1 class="text-6xl">Simple Code Example</h1>
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
 url = 'https://docs.google.com/spreadsheets/d/1Q0vf3ZXFFKXTQXinkE58YnvC4njhvsk3fnBwrHRW5N8/export?format=csv'
@@ -101,7 +169,6 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 ---
 
-<h1 class="text-6xl">Simple Code Example</h1>
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
 def tokenize(examples):
@@ -115,7 +182,6 @@ tokenized_ds = ds.map(tokenize,  batched=True)
 
 ---
 
-<h1 class="text-6xl">Simple Code Example</h1>
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
 path = F"/content/gdrive/My Drive/distilbert-dana-review"
@@ -144,7 +210,6 @@ trainer.save_model()
 
 ---
 
-<h1 class="text-6xl">Simple Code Example</h1>
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
 from transformers import pipeline, Conversation
@@ -166,4 +231,12 @@ def handle_message(msg):
     return reply
 
 ```
+</div>
+
+---
+class: text-center
+---
+
+<div class="flex justify-center">
+  <img src="/qr.jpg" alt="Deep Learning" width="512" />
 </div>
