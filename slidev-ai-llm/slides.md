@@ -139,7 +139,8 @@ class: text-center
 !pip install accelerate -U
 !pip install pip install transformers[torch]
 
-from datasets import load_dataset, load_metric
+# import all functions
+from datasets import load_dataset
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments, Trainer, DataCollatorWithPadding
 import numpy as np
 
@@ -184,22 +185,20 @@ tokenized_ds = ds.map(tokenize,  batched=True)
 
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
-path = F"/content/gdrive/My Drive/distilbert-dana-review"
+path = F"/content/gdrive/My Drive/distilbert-dana-mini"
 training_args = TrainingArguments(num_train_epochs=1,
                                   output_dir=path,
                                   push_to_hub=False,
                                   per_device_train_batch_size=32,
                                   per_device_eval_batch_size=32,
+                                  learning_rate=5e-5,
                                   evaluation_strategy="epoch")
 
-data_collator = DataCollatorWithPadding(tokenizer)
-
-trainer = Trainer(model=model, tokenizer=tokenizer,
+trainer = Trainer(model=model, tokenizer=model_tokenizer,
                   data_collator=data_collator,
                   args=training_args,
                   train_dataset=tokenized_ds["train"],
-                  eval_dataset=tokenized_ds["test"],
-                  compute_metrics=compute_metrics)
+                  eval_dataset=tokenized_ds["test"])
 
 trainer.train()
 
@@ -212,31 +211,18 @@ trainer.save_model()
 
 <div class="absolute inset-0 flex items-center justify-center">
 ```py
-from transformers import pipeline, Conversation
-import torch
+pipe_kwargs = {
+    "top_k": None,
+    "batch_size": 16
+}
 
-chatbot = pipeline(
-            "conversational", 
-            model="facebook/blenderbot-400M-distill",
-            tokenizer="facebook/blenderbot-400M-distill",
-            device=pipe_device)
+path = F"/content/drive/My Drive/distilbert-dana-review"
+text = "Aplikasi Terbaik sepanjang masa"
 
-def handle_message(msg):
-    conversation = Conversation(msg)
+reward_pipe = pipeline("sentiment-analysis", path, device=-1)
+reward_output =  reward_pipe(text, **pipe_kwargs)
 
-    # Generate a response using the Hugging Face model
-    response = chatbot(conversation)
-    reply = response.generated_responses[-1]
-
-    return reply
+print(reward_output)
 
 ```
-</div>
-
----
-class: text-center
----
-
-<div class="flex justify-center">
-  <img src="/qr.jpg" alt="Deep Learning" width="512" />
 </div>
