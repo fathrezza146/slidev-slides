@@ -128,7 +128,7 @@ class: text-center
 
 <video src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/assisted-generation/gif_2_1080p.mov" autoplay loop></video>
 
-<a href="https://huggingface.co/">https://huggingface.co/</a>
+<a href="https://huggingface.co/docs/transformers/en/llm_tutorial">Huggingface LLM Generation</a>
 
 ---
 
